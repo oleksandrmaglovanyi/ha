@@ -7,6 +7,9 @@ Local deployment assumes that user has already istalled Docker runtime on his co
 
 Project confirmed to be working in WSL 2.0 with Docker Desktop.
 
+**!!!!ATTN!!!!**: **Terraform** project uses default security group and **removes all security rules** from there.
+Should be run on clean and unused environment only.
+
 ## Echo-server service details
 
 It is a fork from one dosens of similar projects from GitHub.
