@@ -47,12 +47,12 @@ def serve(host='0.0.0.0', port=3246, verbosity=1):
                     bytes_left -= BLOCK_SIZE
 
             request_time = datetime.datetime.now().ctime()
-            raw_decoded = request['raw'].decode('utf-8', 'ignore')
+            raw_decoded = "HOST: " + my_ip + "\n" +request['raw'].decode('utf-8', 'ignore')
 
             print("HOST: "+ my_ip +"\n"+client_address[0]+" "+request_time+"\n"+raw_decoded, file = log)
 
             if verbosity > 0:
-                print(' - '.join([client_address[0], request_time, request['header']['request-line']]))
+                print(' - '.join(["HOST: "+ my_ip, client_address[0], request_time, request['header']['request-line']]))
 
             response = "HTTP/1.1 200 OK\nAccess-Control-Allow-Origin: *\n\n{}".format(raw_decoded)
             if verbosity == 2:
