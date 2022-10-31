@@ -1,0 +1,4 @@
+variable "resources_prefix" {
+}
+
+

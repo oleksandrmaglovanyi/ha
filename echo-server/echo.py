@@ -3,9 +3,12 @@
 import datetime
 import socket
 import sys
+import requests
 
 # Block size is set to 8192 because thats usually the max header size
 BLOCK_SIZE = 8192
+
+my_ip = '127.0.0.1'
 
 def serve(host='0.0.0.0', port=3246, verbosity=1):
     try:
@@ -46,7 +49,7 @@ def serve(host='0.0.0.0', port=3246, verbosity=1):
             request_time = datetime.datetime.now().ctime()
             raw_decoded = request['raw'].decode('utf-8', 'ignore')
 
-            print(client_address[0]+" "+request_time+"\n"+raw_decoded, file = log)
+            print("HOST: "+ my_ip +"\n"+client_address[0]+" "+request_time+"\n"+raw_decoded, file = log)
 
             if verbosity > 0:
                 print(' - '.join([client_address[0], request_time, request['header']['request-line']]))
@@ -100,5 +103,7 @@ if __name__ == '__main__':
         verbosity = 2
     if quiet:
         verbosity = 0
+
+    my_ip = requests.get('http://checkip.amazonaws.com').text.rstrip()
 
     serve(host, port, verbosity)
