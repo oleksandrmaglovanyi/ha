@@ -3,6 +3,8 @@ It is sample project for python echo-server application deployment to docker on 
 
 For EC2 instance application is built and deployed via user-data script started by cloud-init on the instance. 
 
+Terraform AWS provider uses AWS CLI default configuration profile. So, AWS CLI must be configured before Terraform run. More info: https://docs.aws.amazon.com/cli/latest/reference/configure/
+
 Local deployment assumes that user has already istalled Docker runtime on his computer before running terraform.
 
 Project confirmed to be working in WSL 2.0 with Docker Desktop.
